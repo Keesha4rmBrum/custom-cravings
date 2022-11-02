@@ -1,58 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-
-
-  <meta charset="UTF-8">
-  
-  <title>Custom Cravings</title>
-  <head>
-
-</body>
+<html lang=“en”>
+    <!-- Head Section -->
+    <head>
+    <meta charset=“UTF-8">
+    <title>Custom Cravings</title>
+    </head>
+<body>
+    <!-- Header Section -->
     <header>
-       <h1>Custom Cravings</h1> 
-   <nav>
-      <ul>
-         <li> 
-
-
-
-
-
-         </li>
-
-
-
-      </ul>
-       
-
-
-    </nav>
-     
-</header>
-<div class="hero"><h1>Custom Cravings</h1></div>
-<div> 
-    <div class="card">
-
-        <div>
-        </div>
-        <div>
+        <h1>Logo</h1>
+        <nav>
+            <ul>
+            <li>
+            <li>
+            </ul>
+          </nav>
+    </header>
+    <!-- Hero Section -->
+    <div class=“hero”><h1>Custom Cravings</h1></div>
+    <!-- Card Section -->
+<div>
+    <div class=“card”>
+    <!-- Left Side -->
+        <div class=“left”>
+        <!-- Right Side -->
+            <div class=“right”>
+            <h2>Satisfy your cravings!</h2>
+            <p>Strapline</p>
+                    <!-- Search Area -->
+            <input id=“search” type=“text” placeholder=“Search”/>
+            </div>
             <div>
-            <h2>Satisfy your craving!</h2>
-         <input>Search here<input></div>
-         <div>
-            <button></button>
-         </div>
-        </div>
-
-
-        </div>
-
-
-
+            <button id=“search” class=“button”>Search Now</button>
+            </div>
         </div>
     </div>
-
+</div>
+<!--Results Populate Here -->
+<div class=“results”>
 </div>
 </body>
-
 </html>
