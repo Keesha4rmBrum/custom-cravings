@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <img src=""
-  <title>Custom Cravings</title>
 
+  <meta charset="UTF-8">
+  
+  <title>Custom Cravings</title>
+  <head>
 
 </body>
+    <header>
+       <h1>Custom Cravings</h1> 
+   <nav>
+      <ul>
+         <li> 
+
+
+
+
+
+         </li>
+
+
+
+      </ul>
+       
+
+
+    </nav>
+     
+</header>
+<div class="hero"></div>
+<div class="hero"></div>
+
 
 </html>
