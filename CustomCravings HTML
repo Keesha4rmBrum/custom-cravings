@@ -29,8 +29,30 @@
     </nav>
      
 </header>
-<div class="hero"></div>
-<div class="hero"></div>
+<div class="hero"><h1>Custom Cravings</h1></div>
+<div> 
+    <div class="card">
 
+        <div>
+        </div>
+        <div>
+            <div>
+            <h2>Satisfy your craving!</h2>
+         <input>Search here<input></div>
+         <div>
+            <button></button>
+         </div>
+        </div>
+
+
+        </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+</body>
 
 </html>
