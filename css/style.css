@@ -8,7 +8,7 @@
 }
 
 .body {
-  background-color: var(--off-white-color);
+  background-color: var(--bg-color);
 }
 
 .header {
@@ -21,7 +21,7 @@
 }
   
 .logo {
-  display:flex;
+  display: flex;
   justify-content: flex-start;
   margin-right: auto;
   height: 60px;
@@ -39,17 +39,26 @@
   text-decoration: none;
 }
 
-.hero {
-
-}
-
 .hero-image {
-  
+  background-image: url("/assets/hero.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 500px;
 }
 
-    @media screen and (max-width: 768px) {
-        main,
-        nav {
-          flex-direction: column;
-        }
+.hero-header {
+  font-family: 'Josefin sans', sans-serif;
+  color: var(--off-white-color);
+  font-size: 30px;
+  text-decoration: center;
+  margin: auto;
+  padding: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  main,
+  nav {
+    flex-direction: column;
+  }
 }
