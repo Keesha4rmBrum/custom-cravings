@@ -18,6 +18,11 @@
     </header>
     <!-- Hero Section -->
     <div class=“hero”><h1>Custom Cravings</h1></div>
+    <div class="infoSection">
+    <h2>About Us</h2>
+    <p>Looking for inspiration to create exciting and varied meals that cater exactly to your taste? Look no further! Custom Cravings has a comprehensive collection of delicious recipes based on carefully selected ingredients. Simply type an ingredient you love in the search box below and find a curated list of recipes based around your craving!  
+    </p>
+</div>
     <!-- Card Section -->
 <div>
     <div class=“card”>
