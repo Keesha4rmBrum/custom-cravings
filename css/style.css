@@ -20,7 +20,7 @@
         border-bottom: 5px solid var(--burnt-orange-color);
 }
   
-.logo {
+#logo {
   display: flex;
   justify-content: flex-start;
   margin-right: auto;
@@ -29,12 +29,13 @@
 }
 
 .logo-text {
-  display:flex;
-  justify-content: flex-start;
+  justify-content: left;
   margin-right: auto;
-  height: 70px;
-  padding: 10px;
+  font-size: 20px;
+  font-family: 'crimson text' sans-serif;
   color: var(--green-color);
+  margin-top: 15px;
+  margin-left: 5px;
 }
 
 .top-nav {
@@ -46,6 +47,10 @@
   padding: 25px;
   margin: auto;
   text-decoration: none;
+}
+
+li {
+  margin: 10px;
 }
 
 .hero-image {
@@ -81,7 +86,10 @@
   background-color: var(--off-white-color);
   border-radius: 5px;
   border-width: 1px;
-  color: var(--bg-color)
+  color: var(--bg-color);
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 @media screen and (max-width: 768px) {
