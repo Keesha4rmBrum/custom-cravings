@@ -52,8 +52,10 @@ ingredientsList.addEventListener("click", deleteIngredient);
 
 var formSubitHandler = function (event) {
   event.preventDefault();
+  //coonvert array into string
   var search = ingredientsArray.toString();
 
+  //if string exists call function
   if (search) {
     searchRecipe(search);
   } else {
