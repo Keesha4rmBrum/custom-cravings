@@ -14,8 +14,11 @@
         <nav>
             <ul>
                 <li>
-                    <a href="#What-is-Custom-Cravings?"> What is Custom Cravings?</a>
+                    <a href="#What-is-Custom-Cravings?"> About Us</a>
                 <li>
+                <li>
+                    <a href="#Search">Search</a>
+                </li>
             </ul>
         </nav>
     </header>
