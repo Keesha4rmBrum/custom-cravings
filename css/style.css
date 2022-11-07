@@ -9,6 +9,7 @@
 
 .body {
   background-color: var(--bg-color);
+  justify-content: center;
 }
 
 .header {
@@ -53,6 +54,10 @@ li {
   margin: 10px;
 }
 
+a:hover {
+  color: var(--green-color);
+}
+
 .hero-image {
   background-image: url("/assets/hero.png");
   background-size: cover;
@@ -60,6 +65,7 @@ li {
   width: 100%;
   height: 300px;
   border-bottom: 5px solid var(--green-color);
+  margin-bottom: 50px;
 }
 
 .hero-header {
@@ -81,20 +87,33 @@ li {
 }
 
 .card {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: auto;
+  grid-gap: 20px;
+  justify-content: center;
+  margin: auto;
   background-color: var(--off-white-color);
   border-radius: 5px;
   border-width: 1px;
-  color: var(--bg-color);
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
+  max-width: 70%;
+  padding: 70px;
+}
+
+.left {
+  display: grid;
+  justify-content: left;
+  color: var(--green-color);
+  margin-top: 10px;
 }
 
 @media screen and (max-width: 768px) {
   main,
   nav {
     flex-direction: column;
+  }
+ .card {
+  display:flex;
+  flex-direction: column;
   }
 }
