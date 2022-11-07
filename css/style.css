@@ -105,6 +105,8 @@ a:hover {
   justify-content: left;
   color: var(--green-color);
   margin-top: 10px;
+  border-right: 3px solid var(--burnt-orange-color);
+  padding: 40px;
 }
 
 @media screen and (max-width: 768px) {
