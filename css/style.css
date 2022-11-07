@@ -159,4 +159,9 @@ button:hover {
   display:flex;
   flex-direction: column;
   }
+
+  .left {
+    border-right: 0px;
+    border-bottom: 3px solid var(--burnt-orange-color);
+  }
 }
