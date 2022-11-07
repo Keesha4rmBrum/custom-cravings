@@ -7,6 +7,9 @@ var ingredients = document.querySelector("#search-input");
 var results = document.querySelector("#results");
 var ingredientsArray = [];
 var ingredientsList = document.querySelector("#ingredients-list");
+var mealType = document.querySelector("#mealType");
+var cuisineType = document.querySelector("#cuisineType");
+var health = document.querySelector("#health");
 
 var addIngredients = function (event) {
   event.preventDefault();
@@ -35,7 +38,7 @@ var deleteIngredient = function (event) {
   //detect click on list item
   var btn = event.target;
   //get index as an integer
-  var index = parseInt(btn.parentElement.getAttribute("idx"));
+  var index = parseInt(btn.parentElement.getAttribute("idx"), 10);
   //delete item by item with splice
   ingredientsArray.splice(index, 1);
   //display the current list after deleting item
@@ -48,7 +51,6 @@ var deleteIngredient = function (event) {
 };
 
 ingredientsList.addEventListener("click", deleteIngredient);
-
 
 var formSubitHandler = function (event) {
   event.preventDefault();
@@ -66,22 +68,31 @@ var formSubitHandler = function (event) {
 var searchRecipe = function (search) {
   console.log(search);
   var apiURL = `${RECIPE_BASE_API_URL}recipes/v2?type=public&q=${search}&app_id=${RECIPE_API_ID}&app_key=${RECIPE_API_KEY}`;
+  if (mealType.value !== "") {
+    apiURL += `&mealType=${mealType.value}`;
+  }
+  if (cuisineType.value !== "") {
+    apiURL += `&cuisineType=${cuisineType.value}`;
+  }
+  if (health.value !== "") {
+    apiURL += `&health=${health.value}`;
+  }
   var requestOptions = {
     method: "GET",
     redirect: "follow",
   };
+  console.log(apiURL);
 
   fetch(apiURL, requestOptions)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          console.log(data);
           results.innerHTML = "";
           renderResults(data);
         });
       }
     })
-    .then((result) => console.log(result))
+    .then((results) => console.log(results))
     .catch((error) => console.log("error", error));
 };
 
@@ -126,8 +137,8 @@ var renderResults = function (element) {
     container.innerHTML = `
         <img id="food" src="${recipes[i].recipe.images.SMALL.url}"></img>
         <ul>
+        <li>${recipes[i].recipe.mealType[0]}</li>
         <li>${recipes[i].recipe.label}</li>
-        
         <li>${Math.round(
           recipes[i].recipe.calories / recipes[i].recipe.yield
         )}Kcal</li>
