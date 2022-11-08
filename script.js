@@ -10,6 +10,8 @@ var ingredientsList = document.querySelector("#ingredients-list");
 var mealType = document.querySelector("#mealType");
 var cuisineType = document.querySelector("#cuisineType");
 var health = document.querySelector("#health");
+//local storage key index
+var keyIndex = 0;
 
 var addIngredients = function (event) {
   event.preventDefault();
@@ -37,8 +39,8 @@ var addIngredients = function (event) {
 var deleteIngredient = function (event) {
   //detect click on list item
   var btn = event.target;
-  //get index as an integer
-  var index = parseInt(btn.parentElement.getAttribute("idx"), 10);
+  //get idx attribute as an integer
+  var index = parseInt(btn.getAttribute("idx"), 10);
   //delete item by item with splice
   ingredientsArray.splice(index, 1);
   //display the current list after deleting item
@@ -46,8 +48,8 @@ var deleteIngredient = function (event) {
     .map((ingredient, i) => {
       return `<li idx="${i}">${ingredient}</li>`;
     })
-    //delete coma from array
-    .join(" ");
+    //delete coma from array;
+    .join("");
 };
 
 ingredientsList.addEventListener("click", deleteIngredient);
@@ -66,27 +68,35 @@ var formSubitHandler = function (event) {
 };
 
 var searchRecipe = function (search) {
-  console.log(search);
   var apiURL = `${RECIPE_BASE_API_URL}recipes/v2?type=public&q=${search}&app_id=${RECIPE_API_ID}&app_key=${RECIPE_API_KEY}`;
+  //increase key index
+  keyIndex++;
+  //save api url in local storage witha index of 1
+  localStorage.setItem(keyIndex, JSON.stringify(apiURL));
+  //if mealtype input has been selected then concatenate mealtype value to api call
   if (mealType.value !== "") {
     apiURL += `&mealType=${mealType.value}`;
+    //if cuisineType input has been selected then concatenate cuisineType value to api call
   }
   if (cuisineType.value !== "") {
     apiURL += `&cuisineType=${cuisineType.value}`;
+    //if health input has been selected then concatenate health value to api call
   }
   if (health.value !== "") {
     apiURL += `&health=${health.value}`;
   }
+  //deal with cors
   var requestOptions = {
     method: "GET",
     redirect: "follow",
   };
   console.log(apiURL);
-
+  //call API
   fetch(apiURL, requestOptions)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
+          //clear the
           results.innerHTML = "";
           renderResults(data);
         });
@@ -96,19 +106,19 @@ var searchRecipe = function (search) {
     .catch((error) => console.log("error", error));
 };
 
-var nextPage = function (element) {
+var loadPage = function (element) {
+  console.log(element);
   var requestOptions = {
     method: "GET",
     redirect: "follow",
   };
-
   fetch(element, requestOptions)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          console.log(data);
           results.innerHTML = "";
           renderResults(data);
+          console.log(data);
         });
       }
     })
@@ -118,7 +128,6 @@ var nextPage = function (element) {
 
 var renderResults = function (element) {
   window.scrollTo(0, 0);
-  var caloriesValue = 1000;
   var recipeArray;
   var recipes = element.hits;
   for (var i = 0; i < recipes.length; i++) {
@@ -128,34 +137,53 @@ var renderResults = function (element) {
     recipeArray.forEach((element) => {
       recipeList += "<li>" + element + "</li>";
     });
-    if (caloriesValue) {
-      recipes.map((item) => {
-        console.log(item.calories <= caloriesValue);
-      });
-    }
     recipeList += "</ul>";
     container.innerHTML = `
-        <img id="food" src="${recipes[i].recipe.images.SMALL.url}"></img>
-        <ul>
-        <li>${recipes[i].recipe.mealType[0]}</li>
-        <li>${recipes[i].recipe.label}</li>
-        <li>${Math.round(
-          recipes[i].recipe.calories / recipes[i].recipe.yield
-        )}Kcal</li>
-        <li>${recipes[i].recipe.cuisineType[0]}</li>
-        ${recipeList}
-        </ul>
+        <div class="recipeCard">
+          <div class="header">
+            <img id="food" src="${recipes[i].recipe.images.SMALL.url}"></img>
+          </div>
+          <div class="text">
+            <h2 class="food">${recipes[i].recipe.label}</h2>
+            <i class="fa fa-users">Serves: ${recipes[i].recipe.yield}</i>
+            <p>Meal Type: ${recipes[i].recipe.mealType[0]}</p> 
+            <p>Calories per serving: ${Math.round(
+              recipes[i].recipe.calories / recipes[i].recipe.yield
+            )}Kcal</p> 
+            <p>Cuisine Type: ${recipes[i].recipe.cuisineType[0]}</p>
+            ${recipeList}
+          </div>
+        </div>
     `;
     results.appendChild(container);
   }
+  //API next page link
   var nextURL = element._links.next.href;
+  //create API next page button
   var nextButton = document.createElement("div");
   nextButton.innerHTML = "Next";
+  //cal API's next page
   nextButton.addEventListener("click", function () {
-    nextPage(nextURL);
+    loadPage(nextURL);
+    //increase key index if next button is clicked
+    keyIndex++;
+    //save url in local storage with keyindex
+    localStorage.setItem(keyIndex, JSON.stringify(nextURL));
   });
+  var prevButton = document.createElement("div");
+  prevButton.innerHTML = "Prev";
+  prevButton.addEventListener("click", function () {
+    //get previous url from local storage and save it in variable
+    var prevLink = JSON.parse(localStorage.getItem(keyIndex - 1));
+    console.log(prevLink);
+    //call previous set of results
+    loadPage(prevLink);
+    //decrease key index if prev button is clicked
+    keyIndex--;
+  });
+  //apend API's next page to results container
   results.appendChild(nextButton);
+  results.appendChild(prevButton);
 };
-
 button.addEventListener("click", formSubitHandler);
 add.addEventListener("click", addIngredients);
