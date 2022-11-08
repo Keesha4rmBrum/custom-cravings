@@ -12,6 +12,7 @@ var cuisineType = document.querySelector("#cuisineType");
 var health = document.querySelector("#health");
 //local storage key index
 var keyIndex = 0;
+var nextButton;
 
 var addIngredients = function (event) {
   event.preventDefault();
@@ -119,6 +120,23 @@ var loadPage = function (element) {
           results.innerHTML = "";
           renderResults(data);
           console.log(data);
+          //previous button will only be crated if key index is greater than 1
+          if (keyIndex > 1) {
+            //create previous button
+            prevButton = document.createElement("div");
+            prevButton.innerHTML = "prev";
+            prevButton.addEventListener("click", function () {
+              //get previous url from local storage and save it in variable
+              var prevLink = JSON.parse(localStorage.getItem(keyIndex - 1));
+              console.log(prevLink);
+              //call previous set of results
+              loadPage(prevLink);
+              //decrease key index if prev button is clicked
+              keyIndex--;
+            });
+            //append previous button to results container
+            results.appendChild(prevButton);
+          }
         });
       }
     })
@@ -160,7 +178,7 @@ var renderResults = function (element) {
   //API next page link
   var nextURL = element._links.next.href;
   //create API next page button
-  var nextButton = document.createElement("div");
+  nextButton = document.createElement("div");
   nextButton.innerHTML = "Next";
   //cal API's next page
   nextButton.addEventListener("click", function () {
@@ -170,20 +188,10 @@ var renderResults = function (element) {
     //save url in local storage with keyindex
     localStorage.setItem(keyIndex, JSON.stringify(nextURL));
   });
-  var prevButton = document.createElement("div");
-  prevButton.innerHTML = "Prev";
-  prevButton.addEventListener("click", function () {
-    //get previous url from local storage and save it in variable
-    var prevLink = JSON.parse(localStorage.getItem(keyIndex - 1));
-    console.log(prevLink);
-    //call previous set of results
-    loadPage(prevLink);
-    //decrease key index if prev button is clicked
-    keyIndex--;
-  });
+
   //apend API's next page to results container
   results.appendChild(nextButton);
-  results.appendChild(prevButton);
 };
+
 button.addEventListener("click", formSubitHandler);
 add.addEventListener("click", addIngredients);
