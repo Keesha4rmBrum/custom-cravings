@@ -1,10 +1,10 @@
 var RECIPE_BASE_API_URL = "https://api.edamam.com/api/";
 var RECIPE_API_ID = "73024dfd";
 var RECIPE_API_KEY = "0f3ec99c5316290dd1c55ca13fd54d91";
-var button = document.querySelector("#button-submit");
+var button = document.querySelector("#search");
 var add = document.querySelector("#add-submit");
 var ingredients = document.querySelector("#search-input");
-var results = document.querySelector("#results");
+var results = document.querySelector(".results");
 var ingredientsArray = [];
 var ingredientsList = document.querySelector("#ingredients-list");
 var mealType = document.querySelector("#mealType");
@@ -164,6 +164,9 @@ var renderResults = function (element) {
           <div class="text">
             <h2 class="food">${recipes[i].recipe.label}</h2>
             <i class="fa fa-users">Serves: ${recipes[i].recipe.yield}</i>
+            <i class="fa fa-heart" href="${
+              recipes[i]._links.self.href
+            }"onclick="saveRecipe"></i>
             <p>Meal Type: ${recipes[i].recipe.mealType[0]}</p> 
             <p>Calories per serving: ${Math.round(
               recipes[i].recipe.calories / recipes[i].recipe.yield

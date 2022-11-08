@@ -1,26 +1,44 @@
 <!DOCTYPE html>
-<html lang="“en”">
+<html lang="en">
   <!-- Head Section -->
   <head>
-    <meta charset="“UTF-8" />
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.google.com/specimen/Josefin+Sans"
+    />
+    <link rel="stylesheet" href=https://fonts.google.com/specimen/Crimson+Text
+    />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+
     <title>Custom Cravings</title>
   </head>
-  <body>
+  <body class="body">
     <!-- Header Section -->
-    <header>
-      <h1>Logo</h1>
+    <header class="header">
+      <div id="logo">
+        <img class="logo" src="./assets/logo.png" alt="Custom Cravings Logo" />
+        <h1 class="logo-text">Custom Cravings</h1>
+      </div>
       <nav>
-        <ul>
-          <li></li>
-          <li></li>
+        <ul class="top-nav">
+          <li>nav</li>
+          <li>nav</li>
         </ul>
       </nav>
     </header>
+
     <!-- Hero Section -->
-    <div class="hero"><h1>Custom Cravings</h1></div>
-    <div class="infoSection">
-      <h2>What is Custom Cravings?</h2>
-      <p>
+    <div class="hero-image">
+      <h2 class="hero-header">Custom Cravings</h2>
+      <p class="hero-tagline">Because cravings aren't a crime!</p>
+    </div>
+
+    <!-- About Us Section -->
+    <div>
+      <h3 class="about-us-hr">What is Custom Cravings?</h3>
+      <p class="about-us-p">
         Looking for inspiration to create exciting and varied meals that cater
         exactly to your taste? Look no further! Custom Cravings has a
         comprehensive collection of delicious recipes based on carefully
@@ -28,11 +46,13 @@
         box below and find a curated list of recipes based around your craving!
       </p>
     </div>
+
     <!-- Card Section -->
-    <div>
-      <div class="“card”">
-        <!-- Left Side -->
-        <div class="left">
+    <div class="card">
+      <!-- Left Side -->
+      <div class="left">
+        <aside>
+          <h4>What do you want to do?</h4>
           <form>
             <label for="mealType">Meal Type:</label>
             <input list="mealTypes" name="mealType" id="mealType" />
@@ -98,26 +118,25 @@
               <option value="South East Asian"></option>
             </datalist>
           </form>
-          <!-- Right Side -->
-          <div class="right">
-            <h2>Satisfy your cravings!</h2>
-            <p>Strapline</p>
-            <!-- Search Area -->
-            <form id="recipe-form">
-              <input type="text" id="search-input" />
-              <button type="submit" id="add-submit" class="btn">Add</button>
-              <button type="submit" id="button-submit" class="btn">
-                Search
-              </button>
-            </form>
-            <ul id="ingredients-list"></ul>
-          </div>
-          <div></div>
-        </div>
+        </aside>
+      </div>
+      <!-- Right Side -->
+      <div class="right">
+        <h4>Satisfy your cravings!</h4>
+        <p>Strapline</p>
+        <!-- Search Area -->
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Start typing ingredient..."
+        />
+        <button id="add-submit" class="button">Add Ingredient</button>
+        <button id="search" class="button">Search Now</button>
+        <ul id="ingredients-list"></ul>
       </div>
     </div>
     <!--Results Populate Here -->
-    <div id="results"></div>
+    <div class="results"></div>
+    <script src="./js/script.js"></script>
   </body>
-  <script src="./script.js"></script>
 </html>
