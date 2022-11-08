@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Head Section -->
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.google.com/specimen/Josefin+Sans"
+    />
+    <link rel="stylesheet" href=https://fonts.google.com/specimen/Crimson+Text
+    />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Custom Cravings</title>
+  </head>
+  <body class="body">
+    <!-- Header Section -->
+    <header class="header">
+      <div id="logo">
+        <img class="logo" src="./assets/logo.png" alt="Custom Cravings Logo" />
+        <h1 class="logo-text">Custom Cravings</h1>
+      </div>
+      <nav>
+        <ul class="top-nav">
+          <li>nav</li>
+          <li>nav</li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero-image">
+      <h2 class="hero-header">Custom Cravings</h2>
+      <p class="hero-tagline">Because cravings aren't a crime!</p>
+    </div>
+
+    <!-- About Us Section -->
+    <div>
+      <h3 class="about-us-hr">What is Custom Cravings?</h3>
+      <p class="about-us-p">
+        Looking for inspiration to create exciting and varied meals that cater
+        exactly to your taste? Look no further! Custom Cravings has a
+        comprehensive collection of delicious recipes based on carefully
+        selected ingredients. Simply type an ingredient you love in the search
+        box below and find a curated list of recipes based around your craving!
+      </p>
+    </div>
+
+    <!-- Card Section -->
+    <div class="card">
+      <!-- Left Side -->
+      <div class="left">
+        <aside>
+          <h4>What do you want to do?</h4>
+          <form>
+            <label for="mealType">Meal Type:</label>
+            <input list="mealTypes" name="mealType" id="mealType" />
+            <datalist id="mealTypes">
+              <option value="Breakfast"></option>
+              <option value="Dinner"></option>
+              <option value="Lunch"></option>
+              <option value="Snack"></option>
+              <option value="Teatime"></option>
+            </datalist>
+            <label for="health">Health Label:</label>
+            <input list="healths" name="health" id="health" />
+            <datalist id="healths">
+              <option value="alcohol-cocktail"></option>
+              <option value="alcohol-free"></option>
+              <option value="crustacean-free"></option>
+              <option value="dairy-free"></option>
+              <option value="egg-free"></option>
+              <option value="fish-free"></option>
+              <option value="gluten-free"></option>
+              <option value="keto-friendly"></option>
+              <option value="kidney-friendly"></option>
+              <option value="kosher"></option>
+              <option value="low-fat-abs"></option>
+              <option value="low-sugar"></option>
+              <option value="lupine-free"></option>
+              <option value="Mediterranean"></option>
+              <option value="mollusk-free"></option>
+              <option value="mustard-free"></option>
+              <option value="no-oil-added"></option>
+              <option value="paleo"></option>
+              <option value="peanut-free"></option>
+              <option value="pescatarian"></option>
+              <option value="pork-free"></option>
+              <option value="sesame-free"></option>
+              <option value="shelfish-free"></option>
+              <option value="soy-free"></option>
+              <option value="vegan"></option>
+              <option value="vegetarian"></option>
+              <option value="vegetarian"></option>
+              <option value="wheat-free"></option>
+            </datalist>
+            <label for="cuisineType">Cuisine type:</label>
+            <input list="cuisineTypes" name="CuisineType" id="cuisineType" />
+            <datalist id="cuisineTypes">
+              <option value="American"></option>
+              <option value="Asian"></option>
+              <option value="British"></option>
+              <option value="Caribbean"></option>
+              <option value="Central Europe"></option>
+              <option value="Chinese"></option>
+              <option value="Eastern Europe"></option>
+              <option value="French"></option>
+              <option value="Indian"></option>
+              <option value="Italian"></option>
+              <option value="Japanese"></option>
+              <option value="Kosher"></option>
+              <option value="Mediterranean"></option>
+              <option value="Mexican"></option>
+              <option value="Middle Eastern"></option>
+              <option value="Nordic"></option>
+              <option value="South American"></option>
+              <option value="South East Asian"></option>
+            </datalist>
+          </form>
+        </aside>
+      </div>
+      <!-- Right Side -->
+      <div class="right">
+        <h4>Satisfy your cravings!</h4>
+        <p>Strapline</p>
+        <!-- Search Area -->
+        <input
+          id="search-input"
+          type="text"
+          placeholder="Start typing ingredient..."
+        />
+        <button id="add-submit" class="button">Add Ingredient</button>
+        <button id="search" class="button">Search Now</button>
+        <ul id="ingredients-list"></ul>
+      </div>
+    </div>
+    <!--Results Populate Here -->
+    <div class="results"></div>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
