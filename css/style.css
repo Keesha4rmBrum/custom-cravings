@@ -1,10 +1,11 @@
+/* Root Variables to change golobal themes */ 
 :root {
-  --body-font: "Crimson Text", sans-serif;
-  --heading-font: "Josefin Sans", sans-serif;
-  --bg-color: #42463f;
-  --burnt-orange-color: #bf6336;
-  --green-color: #36bf63;
-  --off-white-color: #edf1f2;
+    --font-heading: 'Comfortaa', cursive;
+    --font-body: 'Josefin Sans', sans-serif;
+    --bg-color: #42463F;
+    --burnt-orange-color: #BF6336;
+    --green-color: #36BF63;
+    --off-white-color: #EDF1F2;
 }
 
 .body {
@@ -13,6 +14,7 @@
   font-family: "Crimson Text", sans-serif;
 }
 
+/* Header Styling */ 
 .header {
   display: flex;
   flex-direction: row;
@@ -20,7 +22,7 @@
   height: 70px;
   background-color: var(--bg-color);
   border-bottom: 5px solid var(--burnt-orange-color);
-  font-family: "Josefin Sans", Sans Sarif;
+  font-family: var(--font-heading);
   font-weight: 100;
 }
 
@@ -41,7 +43,6 @@ li:hover {
   justify-content: left;
   margin-right: auto;
   font-size: 20px;
-  font-family: "Josefin Sans" sans-serif;
   color: var(--green-color);
   margin-top: 15px;
   margin-left: 5px;
@@ -71,38 +72,73 @@ li {
   margin: 10px;
 }
 
+#favourites-page {
+  text-decoration: none;
+  color: var(--off-white-color)
+}
+
+#favourites-page:hover {
+  color: var(--green-color)
+}
+
+
 a:hover {
   color: var(--green-color);
 }
 
+/* Hero Styling */ 
 .hero-image {
   background-image: url("/assets/hero.png");
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 300px;
+  height: 400px;
   border-bottom: 5px solid var(--green-color);
   margin-bottom: 50px;
 }
 
 .hero-header {
-  font-family: "Josefin sans", sans-serif;
+  font-family: 'Comfortaa', cursive;
   color: var(--off-white-color);
-  font-size: 30px;
+  font-size: 20px;
   text-align: center;
   margin: auto;
   padding-top: 120px;
   font-size: 60px;
+  letter-spacing: 2px;
 }
 
 .hero-tagline {
-  font-family: "Josefin sans", sans-serif;
+  font-family: var(--font-body);
   color: var(--off-white-color);
   font-size: 30px;
   text-align: center;
   margin: auto;
 }
 
+/* About Us Styling*/
+h3 {
+  color: var(--off-white-color);
+  font-family: var(--font-heading);
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 25px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+p {
+  color: var(--off-white-color);
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 15px;
+  line-height: 25px;
+  padding: 40px;
+  letter-spacing: 1px;
+  font-family: var(--font-body);
+}
+
+/* Card Dynamic Search Area */ 
 .card {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -182,6 +218,9 @@ button:hover {
   font-size: 17px;
 }
 
+/* Results Section Styling */ 
+
+/* Responsive Styling */ 
 @media screen and (max-width: 768px) {
   main,
   nav {
