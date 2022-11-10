@@ -10,28 +10,58 @@ var ingredientsList = document.querySelector("#ingredients-list");
 var mealType = document.querySelector("#mealType");
 var cuisineType = document.querySelector("#cuisineType");
 var health = document.querySelector("#health");
+var deleteUserSearch = document.querySelector("#delete-search");
 //local storage key index
 var keyIndex = 0;
 var nextButton;
+var alertUser = document.querySelector("#alertUser");
+var favouriteArray = JSON.parse(localStorage.getItem("favourite")) || [];
+var anch = document.getElementById("favourites-page");
+
+fetch("https://bootcamp-food-api.herokuapp.com/api/foods")
+  .then((response) => response.json())
+  .then((data) => loadFoodList(data))
+  .catch((error) => console.log("error", error));
+function loadFoodList(foods) {
+  // Autocomplete widget
+  $(function () {
+    $("#search-input").autocomplete({
+      source: foods,
+    });
+  });
+}
+
+anch.addEventListener("click", function () {
+  results.innerHTML = "";
+});
 
 var addIngredients = function (event) {
   event.preventDefault();
   //store ingredients search value in variable
+
   var ingredient = ingredients.value;
   //if ingredient already exists
+  deleteUserSearch.innerHTML = `<i onclick="deleteSearch">Delete Search</>`;
   if (ingredientsArray.includes(ingredient)) {
-    //warn user
-    alert("Ingredient already exists");
+    //warn user if ingredient was already added
+    alertUser.className = "show";
+    alertUser.innerHTML = "Ingredient already added";
+    //set timeout for the warning to disappear
+    setTimeout(function () {
+      alertUser.className = alertUser.className.replace("show", "");
+      alertUser.innerHTML = "";
+    }, 3000);
     //if ingredient doesnt exist
   } else {
-    //push ingredient to array
-    ingredientsArray.push(ingredient);
-    ingredientsArray.toString();
-    console.log(ingredientsArray);
-    //create list of items a deduct 1 from the lenght to set index "idx"
-    ingredientsList.innerHTML += `<li idx="${
-      ingredientsArray.length - 1
-    }">${ingredient}</li>`;
+    if (ingredient !== "") {
+      //push ingredient to array
+      ingredientsArray.push(ingredient);
+      ingredientsArray.toString();
+      //create list of items a deduct 1 from the lenght to set index "idx"
+      ingredientsList.innerHTML += `<li idx="${
+        ingredientsArray.length - 1
+      }">${ingredient}</li>`;
+    }
   }
   //clear input value
   ingredients.value = "";
@@ -64,7 +94,12 @@ var formSubitHandler = function (event) {
   if (search) {
     searchRecipe(search);
   } else {
-    alert("Select and ingredient");
+    alertUser.className = "show";
+    alertUser.innerHTML = "Select Ingredient";
+    setTimeout(function () {
+      alertUser.className = alertUser.className.replace("show", "");
+      alertUser.innerHTML = "";
+    }, 5000);
   }
 };
 
@@ -91,13 +126,12 @@ var searchRecipe = function (search) {
     method: "GET",
     redirect: "follow",
   };
-  console.log(apiURL);
   //call API
   fetch(apiURL, requestOptions)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          //clear the
+          //clear the results conatiner
           results.innerHTML = "";
           renderResults(data);
         });
@@ -108,7 +142,6 @@ var searchRecipe = function (search) {
 };
 
 var loadPage = function (element) {
-  console.log(element);
   var requestOptions = {
     method: "GET",
     redirect: "follow",
@@ -119,7 +152,6 @@ var loadPage = function (element) {
         response.json().then(function (data) {
           results.innerHTML = "";
           renderResults(data);
-          console.log(data);
           //previous button will only be crated if key index is greater than 1
           if (keyIndex > 1) {
             //create previous button
@@ -128,7 +160,6 @@ var loadPage = function (element) {
             prevButton.addEventListener("click", function () {
               //get previous url from local storage and save it in variable
               var prevLink = JSON.parse(localStorage.getItem(keyIndex - 1));
-              console.log(prevLink);
               //call previous set of results
               loadPage(prevLink);
               //decrease key index if prev button is clicked
@@ -145,28 +176,47 @@ var loadPage = function (element) {
 };
 
 var renderResults = function (element) {
-  window.scrollTo(0, 0);
   var recipeArray;
+  //
   var recipes = element.hits;
+  //iterate through each object returned by the API
   for (var i = 0; i < recipes.length; i++) {
     var container = document.createElement("div");
+    //get recipe label to compare with favourites
+    var recipeLabel = recipes[i].recipe.label;
+    //find if any recipe rendered is in the favourites in the local storage
+    var recipeFavourite = favouriteArray.find(
+      (search) => search.name == recipeLabel
+    );
+    //create favourite icon
+    var favouriteIcon = "<i";
+    //if the recipe is in the favourites
+    if (recipeFavourite) {
+      //give it a colored "heart"
+      favouriteIcon += ` class="fa-solid fa-heart"></i>`;
+    } else {
+      //if not give it a empty "heart"
+      favouriteIcon += ` class="fa-regular fa-heart"></i>`;
+    }
+    //store every ingredient in an array
     recipeArray = recipes[i].recipe.ingredientLines;
+    //create an unoredered list
     var recipeList = "<ul>";
+    //for each element in the array add the element rendered to the unoredered list
     recipeArray.forEach((element) => {
       recipeList += "<li>" + element + "</li>";
     });
     recipeList += "</ul>";
+    //populate the container
     container.innerHTML = `
-        <div class="recipeCard">
+        <div class="recipeCard" href="${recipes[i]._links.self.href}">
           <div class="header">
             <img id="food" src="${recipes[i].recipe.images.SMALL.url}"></img>
           </div>
           <div class="text">
-            <h2 class="food">${recipes[i].recipe.label}</h2>
+            <h2 class="food">${recipeLabel}</h2>
             <i class="fa fa-users">Serves: ${recipes[i].recipe.yield}</i>
-            <i class="fa fa-heart" href="${
-              recipes[i]._links.self.href
-            }"onclick="saveRecipe"></i>
+            ${favouriteIcon}
             <p>Meal Type: ${recipes[i].recipe.mealType[0]}</p> 
             <p>Calories per serving: ${Math.round(
               recipes[i].recipe.calories / recipes[i].recipe.yield
@@ -179,22 +229,80 @@ var renderResults = function (element) {
     results.appendChild(container);
   }
   //API next page link
-  var nextURL = element._links.next.href;
-  //create API next page button
-  nextButton = document.createElement("div");
-  nextButton.innerHTML = "Next";
-  //cal API's next page
-  nextButton.addEventListener("click", function () {
-    loadPage(nextURL);
-    //increase key index if next button is clicked
-    keyIndex++;
-    //save url in local storage with keyindex
-    localStorage.setItem(keyIndex, JSON.stringify(nextURL));
-  });
-
-  //apend API's next page to results container
-  results.appendChild(nextButton);
+  var nextURL = element._links.next?.href;
+  if (nextURL !== undefined) {
+    //create API next page button
+    nextButton = document.createElement("div");
+    nextButton.innerHTML = "Next";
+    //cal API's next page
+    nextButton.addEventListener("click", function () {
+      loadPage(nextURL);
+      //increase key index if next button is clicked
+      keyIndex++;
+      //save url in local storage with keyindex
+      localStorage.setItem(keyIndex, JSON.stringify(nextURL));
+    });
+    //apend API's next page to results container
+    results.appendChild(nextButton);
+  }
+  //scroll into results container
+  results.scrollIntoView();
 };
+
+var deleteSearch = function () {
+  deleteUserSearch.innerHTML = "";
+  ingredientsList.innerHTML = "";
+  ingredientsArray = [];
+};
+
+results.addEventListener("click", function (e) {
+  //coloured heart fontawesome icon
+  var solidHert = "fa-solid fa-heart";
+  //empty heart fontawesome icon
+  var regularHeart = "fa-regular fa-heart";
+  //target h2 and get recipe label
+  var recipeName = e.target.parentElement.children[0].textContent;
+  //target image and get src
+  var recipeImage =
+    e.target.parentElement.parentElement.children[0].children[0].currentSrc;
+  //target recipeCard and get href
+  var recipeLink = e.target.parentElement.parentElement.getAttribute("href");
+  //check if the recipe already exists in the favouriteArray
+  var recipeExists = favouriteArray.find((search) => search.name == recipeName);
+  //if the icon has a empty heart
+  if (e.target.className == regularHeart) {
+    //change it to colored heart icon on click
+    e.target.className = solidHert;
+    //if the recipe exists in the array
+    if (recipeExists) {
+      //log already exists
+      console.log("Already exists");
+      //if the recipe does not exist
+    } else {
+      //create object with the following elements
+      var favourite = {
+        name: recipeName,
+        link: recipeLink,
+        value: solidHert,
+        image: recipeImage,
+        status: "favourite",
+      };
+      //push the object into the array
+      favouriteArray.push(favourite);
+      //save the array in local storage
+      localStorage.setItem("favourite", JSON.stringify(favouriteArray));
+    }
+    //if the icon has a coloured heart
+  } else if (e.target.className == solidHert) {
+    //change it to empty heart icon on click
+    e.target.className = regularHeart;
+    //remove the element from the arrray
+    favouriteArray.splice(favouriteArray.indexOf(recipeExists), 1);
+    //replace the array in local storage without the removed element
+    localStorage.setItem("favourite", JSON.stringify(favouriteArray));
+  }
+});
 
 button.addEventListener("click", formSubitHandler);
 add.addEventListener("click", addIngredients);
+deleteUserSearch.addEventListener("click", deleteSearch);

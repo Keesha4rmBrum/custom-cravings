@@ -9,6 +9,17 @@
     />
     <link rel="stylesheet" href=https://fonts.google.com/specimen/Crimson+Text
     />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/style.css" />
 
@@ -24,7 +35,9 @@
       <nav>
         <ul class="top-nav">
           <li>nav</li>
-          <li>nav</li>
+          <li>
+            <a id="favourites-page" href="./favourites.html">Favourites</a>
+          </li>
         </ul>
       </nav>
     </header>
@@ -132,11 +145,14 @@
         />
         <button id="add-submit" class="button">Add Ingredient</button>
         <button id="search" class="button">Search Now</button>
+        <div id="delete-search"></div>
         <ul id="ingredients-list"></ul>
       </div>
     </div>
     <!--Results Populate Here -->
     <div class="results"></div>
-    <script src="./js/script.js"></script>
   </body>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="./js/script.js"></script>
 </html>
