@@ -1,17 +1,16 @@
-
 :root {
-    --body-font: 'Crimson Text', sans-serif;
-    --heading-font: 'Josefin Sans', sans-serif;
-    --bg-color: #42463F;
-    --burnt-orange-color: #BF6336;
-    --green-color: #36BF63;
-    --off-white-color: #EDF1F2;
+  --body-font: "Crimson Text", sans-serif;
+  --heading-font: "Josefin Sans", sans-serif;
+  --bg-color: #42463f;
+  --burnt-orange-color: #bf6336;
+  --green-color: #36bf63;
+  --off-white-color: #edf1f2;
 }
 
 .body {
   background-color: var(--bg-color);
   justify-content: center;
-  font-family: 'Crimson Text', sans-serif;
+  font-family: "Crimson Text", sans-serif;
 }
 
 .header {
@@ -21,7 +20,7 @@
   height: 70px;
   background-color: var(--bg-color);
   border-bottom: 5px solid var(--burnt-orange-color);
-  font-family: 'Josefin Sans', Sans Sarif;
+  font-family: "Josefin Sans", Sans Sarif;
   font-weight: 100;
 }
 
@@ -29,7 +28,7 @@ li:hover {
   cursor: pointer;
   color: var(--green-color);
 }
-  
+
 #logo {
   display: flex;
   justify-content: flex-start;
@@ -42,7 +41,7 @@ li:hover {
   justify-content: left;
   margin-right: auto;
   font-size: 20px;
-  font-family: 'Josefin Sans' sans-serif;
+  font-family: "Josefin Sans" sans-serif;
   color: var(--green-color);
   margin-top: 15px;
   margin-left: 5px;
@@ -87,7 +86,7 @@ a:hover {
 }
 
 .hero-header {
-  font-family: 'Josefin sans', sans-serif;
+  font-family: "Josefin sans", sans-serif;
   color: var(--off-white-color);
   font-size: 30px;
   text-align: center;
@@ -97,7 +96,7 @@ a:hover {
 }
 
 .hero-tagline {
-  font-family: 'Josefin sans', sans-serif;
+  font-family: "Josefin sans", sans-serif;
   color: var(--off-white-color);
   font-size: 30px;
   text-align: center;
@@ -168,14 +167,29 @@ button:hover {
   background-color: var(--burnt-orange-color);
 }
 
+#alertUser {
+  display: none;
+  width: 200px;
+  height: 40px;
+  margin: auto;
+  background-color: red;
+  color: #fff;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  font-size: 17px;
+}
+
 @media screen and (max-width: 768px) {
   main,
   nav {
     flex-direction: column;
   }
- .card {
-  display:flex;
-  flex-direction: column;
+  .card {
+    display: flex;
+    flex-direction: column;
   }
 
   .left {

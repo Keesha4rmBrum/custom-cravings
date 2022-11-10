@@ -14,7 +14,7 @@ var deleteUserSearch = document.querySelector("#delete-search");
 //local storage key index
 var keyIndex = 0;
 var nextButton;
-var alertUser = document.querySelector("#alertUser");
+var alertUser = document.getElementById("alertUser");
 var favouriteArray = JSON.parse(localStorage.getItem("favourite")) || [];
 var anch = document.getElementById("favourites-page");
 
@@ -57,13 +57,12 @@ var addIngredients = function (event) {
   deleteUserSearch.innerHTML = `<i onclick="deleteSearch">Delete Search</>`;
   if (ingredientsArray.includes(ingredient)) {
     //warn user if ingredient was already added
-    alertUser.className = "show";
-    alertUser.innerHTML = "Ingredient already added";
-    //set timeout for the warning to disappear
-    setTimeout(function () {
-      alertUser.className = alertUser.className.replace("show", "");
-      alertUser.innerHTML = "";
-    }, 3000);
+     alertUser.style.display = "block";
+     alertUser.innerHTML = "Select Ingredient";
+     setTimeout(function () {
+       alertUser.style.display = "none";
+       alertUser.innerHTML = "";
+     }, 5000);
     //if ingredient doesnt exist
   } else {
     if (ingredient !== "") {
@@ -107,10 +106,10 @@ var formSubitHandler = function (event) {
   if (search) {
     searchRecipe(search);
   } else {
-    alertUser.className = "show";
+    alertUser.style.display = "block";
     alertUser.innerHTML = "Select Ingredient";
     setTimeout(function () {
-      alertUser.className = alertUser.className.replace("show", "");
+      alertUser.style.display = "none";
       alertUser.innerHTML = "";
     }, 5000);
   }
