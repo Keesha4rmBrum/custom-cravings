@@ -14,6 +14,19 @@ var health = document.querySelector("#health");
 var keyIndex = 0;
 var nextButton;
 
+fetch("https://bootcamp-food-api.herokuapp.com/api/foods")
+  .then((response) => response.json())
+  .then((data) => loadFoodList(data))
+  .catch((error) => console.log("error", error));
+
+function loadFoodList(foods) {
+  // Autocomplete widget
+  $(function () {
+    $("#search-input").autocomplete({
+      source: foods,
+    });
+  });
+}
 var addIngredients = function (event) {
   event.preventDefault();
   //store ingredients search value in variable
