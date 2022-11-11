@@ -48,6 +48,11 @@ li:hover {
   margin-left: 5px;
 }
 
+a {
+  text-decoration: none;
+  color: var(--off-white-color);
+}
+
 .logo:hover {
   cursor: pointer;
 }
@@ -186,7 +191,7 @@ p {
   color: var(--bg-color);
 }
 
-h4 {
+.h4 {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -259,7 +264,8 @@ button:hover {
   right: 0;
   bottom: 30px;
   font-size: 17px;
-  
+}
+
 #delete-search {
   text-decoration: none;
   color: var(--burnt-orange-color);
@@ -269,6 +275,7 @@ button:hover {
 
 #delete-search.logo:hover {
   cursor: pointer;
+  color:var(--bg-color);
 }
 
 /* Results Section Styling */ 
@@ -314,6 +321,18 @@ button:hover {
 
 .type-h {
   color:var(--bg-color);
+}
+
+/* Favourites Page Styling */ 
+#favourites {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 300px;
+  height: 500px;
+  background-color: var(--off-white-color);
+  border-radius: 15px;
+  margin: 20px 20px 20px 20px;
 }
 
 /* Responsive Styling */ 

@@ -4,56 +4,45 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.google.com/specimen/Josefin+Sans"
-    />
-    <link rel="stylesheet" href=https://fonts.google.com/specimen/Crimson+Text
-    />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-      rel="stylesheet"
-    />
+    <title>My Favourite Recipes!</title>
+    <!-- Google Fonts Links -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap"/>
+    <link rel="stylesheet" href=https://fonts.google.com/specimen/Crimson+Text/>
+    <!-- J Query Link -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet"/>
+    <!-- CSS Links -->
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body>
+
+  <body class="body">
     <!-- Header Section -->
     <header class="header">
       <div id="logo">
         <img class="logo" src="./assets/logo.png" alt="Custom Cravings Logo" />
         <h1 class="logo-text"><a href="index.html">Custom Cravings</a></h1>
       </div>
+        <!-- Top Nav Bar-->
       <nav>
         <ul class="top-nav">
-          <li>nav</li>
-          <li>Favourites</li>
+          <li id="about-us">About Us<a href="#about-us"></a></li>
+          <li><a id="favourites-page" href="./favourites.html">Favourites</a></li>
         </ul>
-        </div>
       </nav>
     </header>
 
     <!-- Hero Section -->
     <div class="hero-image">
-      <h2 class="hero-header">Custom Cravings</h2>
-      <p class="hero-tagline">Because cravings aren't a crime!</p>
+      <h2 class="hero-header">My Favourite Recipes!</h2>
     </div>
 
+    <!-- Card Section -->
     <div class="card">
-      <h1>Favourites</h1>
-      <div id="favourites" style="
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-gap: .5em;
-      align-items: center;
-      background: #eee;
-      padding: .5em;
-      border-radius: 2px;
-      counter-reset: nb;
-      border: 2px solid red;"></div>
+      <h1 class="h4">My Favourite Recipes!</h1>
+      <div id="favourites"></div>
+      <div id="results" class="result-cards"></div>
+      </div>
     </div>
-    <div id="results"></div>
   </body>
   <script src="./js/favourites.js"></script>
   
