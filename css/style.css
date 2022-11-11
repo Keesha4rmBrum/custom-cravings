@@ -316,10 +316,6 @@ button:hover {
   color:var(--bg-color);
 }
 
-#food {
-
-}
-
 /* Responsive Styling */ 
 @media screen and (max-width: 768px) {
   main,
