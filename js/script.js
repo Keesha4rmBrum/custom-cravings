@@ -57,12 +57,12 @@ var addIngredients = function (event) {
   deleteUserSearch.innerHTML = `<i onclick="deleteSearch">Click Here to Clear Search</>`;
   if (ingredientsArray.includes(ingredient)) {
     //warn user if ingredient was already added
-     alertUser.style.display = "block";
-     alertUser.innerHTML = "Select Ingredient";
-     setTimeout(function () {
-       alertUser.style.display = "none";
-       alertUser.innerHTML = "";
-     }, 5000);
+    alertUser.style.display = "block";
+    alertUser.innerHTML = "Select Ingredient";
+    setTimeout(function () {
+      alertUser.style.display = "none";
+      alertUser.innerHTML = "";
+    }, 5000);
     //if ingredient doesnt exist
   } else {
     if (ingredient !== "") {
@@ -224,14 +224,24 @@ var renderResults = function (element) {
       <div class="result-cards">
           <div class="result-card">
             <div href="${recipes[i]._links.self.href}">
-                <img class="result-img" id="food" src="${recipes[i].recipe.images.SMALL.url}"></img>
+                <img class="result-img" id="food" src="${
+                  recipes[i].recipe.images.SMALL.url
+                }"></img>
                   <div class="text">
                     <h2 class="result-header">${recipeLabel}</h2>
-                      <i class="fa fa-users">Serves: ${recipes[i].recipe.yield}</i>
+                      <i class="fa fa-users">Serves: ${
+                        recipes[i].recipe.yield
+                      }</i>
                       ${favouriteIcon}
-                      <p class="type-h">Meal Type: ${recipes[i].recipe.mealType[0]}</p> 
-                      <p class="type-h">Calories per serving: ${Math.round(recipes[i].recipe.calories / recipes[i].recipe.yield)}Kcal</p> 
-                      <p class="type-h">Cuisine Type: ${recipes[i].recipe.cuisineType[0]}</p>
+                      <p class="type-h">Meal Type: ${
+                        recipes[i].recipe.mealType[0]
+                      }</p> 
+                      <p class="type-h">Calories per serving: ${Math.round(
+                        recipes[i].recipe.calories / recipes[i].recipe.yield
+                      )}Kcal</p> 
+                      <p class="type-h">Cuisine Type: ${
+                        recipes[i].recipe.cuisineType[0]
+                      }</p>
                      ${recipeList}
                   </div>
             </div>
@@ -274,9 +284,10 @@ results.addEventListener("click", function (e) {
   var regularHeart = "fa-regular fa-heart";
   //target h2 and get recipe label
   var recipeName = e.target.parentElement.children[0].textContent;
+
   //target image and get src
   var recipeImage =
-    e.target.parentElement.parentElement.children[0].children[0].currentSrc;
+    e.target.parentElement.parentElement.children.food.currentSrc;
   //target recipeCard and get href
   var recipeLink = e.target.parentElement.parentElement.getAttribute("href");
   //check if the recipe already exists in the favouriteArray
