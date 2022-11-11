@@ -46,6 +46,10 @@
 
     <!-- About Us Section -->
     <div>
+      <div class="about-us">
+      <aside> <img src="./assets/fruit.png" id="about-us-img"> </aside>
+      </div>
+      <div>
       <h3 id="about-us" class="about-us-hr">What is Custom Cravings?</h3>
       <p class="about-us-p">
         Looking for inspiration to create exciting and varied meals that cater
@@ -54,6 +58,7 @@
         selected ingredients. Simply type an ingredient you love in the search
         box below and find a curated list of recipes based around your craving!
       </p>
+      </div>
     </div>
 
     <!-- Card Section -->
@@ -61,9 +66,9 @@
       <!-- Left Side -->
       <div class="left">
         <aside>
-          <h4>What do you want to do?</h4>
+          <h4>What are you craving?</h4>
           <form>
-            <label for="mealType">Meal Type:</label>
+            <label class="card-options" for="mealType">Meal Type:</label>
             <input list="mealTypes" name="mealType" id="mealType" />
             <datalist id="mealTypes">
               <option value="Breakfast"></option>
@@ -72,7 +77,7 @@
               <option value="Snack"></option>
               <option value="Teatime"></option>
             </datalist>
-            <label for="health">Health Label:</label>
+            <label class="card-options" for="health">Health Label:</label>
             <input list="healths" name="health" id="health" />
             <datalist id="healths">
               <option value="alcohol-cocktail"></option>
@@ -104,7 +109,7 @@
               <option value="vegetarian"></option>
               <option value="wheat-free"></option>
             </datalist>
-            <label for="cuisineType">Cuisine type:</label>
+            <label class="card-options" for="cuisineType">Cuisine type:</label>
             <input list="cuisineTypes" name="CuisineType" id="cuisineType" />
             <datalist id="cuisineTypes">
               <option value="American"></option>
@@ -131,14 +136,9 @@
       </div>
       <!-- Right Side -->
       <div class="right">
-        <h4>Satisfy your cravings!</h4>
-        <p>Strapline</p>
+        <h4>Add ingredients to your list!</h4>
         <!-- Search Area -->
-        <input
-          id="search-input"
-          type="text"
-          placeholder="Start typing ingredient..."
-        />
+        <input id="search-input" type="text" placeholder="Search for ingredients..."/>
         <button id="add-submit" class="button">Add Ingredient</button>
         <button id="search" class="button">Search Now</button>
         <span id="alertUser"></span>
@@ -148,6 +148,7 @@
     </div>
     <!--Results Populate Here -->
     <div class="results"></div>
+    <h5 class="about-us">View Your Recipes Below!</h5>
   </body>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

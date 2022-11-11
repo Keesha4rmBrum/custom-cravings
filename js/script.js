@@ -54,7 +54,7 @@ var addIngredients = function (event) {
 
   var ingredient = ingredients.value;
   //if ingredient already exists
-  deleteUserSearch.innerHTML = `<i onclick="deleteSearch">Delete Search</>`;
+  deleteUserSearch.innerHTML = `<i onclick="deleteSearch">Click Here to Clear Search</>`;
   if (ingredientsArray.includes(ingredient)) {
     //warn user if ingredient was already added
      alertUser.style.display = "block";
@@ -221,12 +221,12 @@ var renderResults = function (element) {
     recipeList += "</ul>";
     //populate the container
     container.innerHTML = `
-        <div class="recipeCard" href="${recipes[i]._links.self.href}">
-          <div class="header">
+        <div class="result-card" href="${recipes[i]._links.self.href}">
+          <div>
             <img id="food" src="${recipes[i].recipe.images.SMALL.url}"></img>
           </div>
           <div class="text">
-            <h2 class="food">${recipeLabel}</h2>
+            <h2 class="result-header">${recipeLabel}</h2>
             <i class="fa fa-users">Serves: ${recipes[i].recipe.yield}</i>
             ${favouriteIcon}
             <p>Meal Type: ${recipes[i].recipe.mealType[0]}</p> 

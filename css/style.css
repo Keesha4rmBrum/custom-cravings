@@ -102,32 +102,38 @@ a:hover {
   color: var(--off-white-color);
   font-size: 20px;
   text-align: center;
-  margin: auto;
   padding-top: 120px;
   font-size: 60px;
   letter-spacing: 2px;
 }
 
 .hero-tagline {
+  justify-content: center;
   font-family: var(--font-body);
   color: var(--off-white-color);
   font-size: 30px;
   text-align: center;
-  margin: auto;
+  margin:auto;
 }
 
 /* About Us Styling*/
+
 h3 {
-  color: var(--off-white-color);
-  font-family: var(--font-heading);
+  display: flex;
+  justify-content: center;
   text-align: center;
+  color: var(--burnt-orange-color);
+  font-family: var(--font-heading);
   margin-bottom: 10px;
   font-size: 25px;
   margin-bottom: 20px;
   letter-spacing: 1px;
+  margin: auto;
 }
 
 p {
+  display:flex;
+  flex-direction: row;
   color: var(--off-white-color);
   text-align: center;
   margin-bottom: 40px;
@@ -136,6 +142,16 @@ p {
   padding: 40px;
   letter-spacing: 1px;
   font-family: var(--font-body);
+}
+
+#about-us-img {
+  width: 400px;
+  height: 200px;
+  background-position: center;
+  float: right;
+  margin: auto;
+  border-radius: 30px;
+  margin-right: 20px;
 }
 
 /* Card Dynamic Search Area */ 
@@ -147,11 +163,13 @@ p {
   justify-content: center;
   margin: auto;
   background-color: var(--off-white-color);
-  border-radius: 5px;
+  border-radius: 30px;
   border-width: 1px;
   max-width: 70%;
-  padding: 70px;
+  padding: 30px;
 }
+
+/* Left side of Card styling */ 
 
 .left {
   display: grid;
@@ -162,14 +180,33 @@ p {
   padding: 40px;
 }
 
+.card-options {
+  font-family: var(--font-body);
+  text-align: center;
+  color: var(--bg-color);
+}
+
+h4 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: var(--burnt-orange-color);
+  font-family: var(--font-heading);
+  margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  margin: auto;
+  padding-bottom: 20px;
+  line-height: 30px;
+}
+
 .right {
   display: grid;
   justify-content: center;
   text-align: center;
   color: var(--green-color);
   margin-top: 10px;
-  padding: 40px;
-  line-height: 40px;
 }
 
 input {
@@ -178,6 +215,7 @@ input {
   border: 1px solid var(--off-white-color);
   border-radius: 20px;
   margin-bottom: 20px;
+  margin:auto;
 }
 
 input::placeholder {
@@ -191,11 +229,16 @@ input::content {
 }
 
 button {
-  padding: 10px;
-  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  border-radius: 30px;
   border-width: 0px;
   color: var(--off-white-color);
   background-color: var(--green-color);
+  width: 200px;
+  margin: auto;
+  text-align: center;
 }
 
 button:hover {
@@ -216,6 +259,49 @@ button:hover {
   right: 0;
   bottom: 30px;
   font-size: 17px;
+  
+#delete-search {
+  text-decoration: none;
+  color: var(--burnt-orange-color);
+  text-decoration: bold;
+  text-align: center;
+}
+
+#delete-search.logo:hover {
+  cursor: pointer;
+}
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  height: 70px;
+}
+
+.result-card {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--off-white-color);
+  border-radius: 15px;
+  border-width: 1px;
+  border-color: (--off-white-color);
+}
+
+.result-header {
+  display:flex;
+  justify-content: space-evenly;
+  justify-content: center;
+  text-align: center;
+  color: var(--burnt-orange-color);
+  font-family: var(--font-heading);
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+#food {
+  border-radius: 15px;
 }
 
 /* Results Section Styling */ 
