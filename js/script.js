@@ -222,22 +222,20 @@ var renderResults = function (element) {
     //populate the container
     container.innerHTML = `
       <div class="result-cards">
-        <div class="result-card">
-        <div href="${recipes[i]._links.self.href}">
-            <img class="result-img" id="food" src="${recipes[i].recipe.images.SMALL.url}"></img>
-              <div class="text">
-                <div>
-                <h2 class="result-header">${recipeLabel}</h2>
-                  <i class="fa fa-users">Serves: ${recipes[i].recipe.yield}</i>
-                   ${favouriteIcon}
-                  <p class="type-h">Meal Type: ${recipes[i].recipe.mealType[0]}</p> 
-                  <p class="type-h">Calories per serving: ${Math.round(recipes[i].recipe.calories / recipes[i].recipe.yield)}Kcal</p> 
-                  <p class="type-h">Cuisine Type: ${recipes[i].recipe.cuisineType[0]}</p>
-                  ${recipeList}
-                </div>
-                </div>
-              </div>
-        </div>
+          <div class="result-card">
+            <div href="${recipes[i]._links.self.href}">
+                <img class="result-img" id="food" src="${recipes[i].recipe.images.SMALL.url}"></img>
+                  <div class="text">
+                    <h2 class="result-header">${recipeLabel}</h2>
+                      <i class="fa fa-users">Serves: ${recipes[i].recipe.yield}</i>
+                      ${favouriteIcon}
+                      <p class="type-h">Meal Type: ${recipes[i].recipe.mealType[0]}</p> 
+                      <p class="type-h">Calories per serving: ${Math.round(recipes[i].recipe.calories / recipes[i].recipe.yield)}Kcal</p> 
+                      <p class="type-h">Cuisine Type: ${recipes[i].recipe.cuisineType[0]}</p>
+                     ${recipeList}
+                  </div>
+            </div>
+          </div>
       </div>
     `;
     results.appendChild(container);

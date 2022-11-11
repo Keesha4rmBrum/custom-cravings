@@ -309,10 +309,11 @@ button:hover {
   border-radius: 15px;
   border-width: 5px;
   border-color: var(--burnt-orange-color);
+  margin-top: 10px;
 }
 
 .type-h {
-
+  color:var(--bg-color);
 }
 
 #food {
