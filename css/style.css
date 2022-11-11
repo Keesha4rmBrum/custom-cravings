@@ -271,41 +271,53 @@ button:hover {
   cursor: pointer;
 }
 
+/* Results Section Styling */ 
+
 .results {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  justify-content: space-evenly;
   width: 100%;
-  max-width: 90%;
 }
 
-.result-card {
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
+.result-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 300px;
+  height: 500px;
   background-color: var(--off-white-color);
   border-radius: 15px;
-  border-width: 1px;
-  border-color: (--off-white-color);
   margin: 20px 20px 20px 20px;
 }
 
+.result-card {
+  flex: 0 1 24%;
+}
+
 .result-header {
-  display:flex;
-  justify-content: space-evenly;
-  justify-content: center;
-  text-align: center;
   color: var(--burnt-orange-color);
   font-family: var(--font-heading);
-  margin-bottom: 10px;
   font-size: 20px;
+  padding: 5px;
+}
+
+.result-img {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 15px;
+  border-width: 5px;
+  border-color: var(--burnt-orange-color);
+}
+
+.type-h {
+
 }
 
 #food {
-  border-radius: 15px;
-}
 
-/* Results Section Styling */ 
+}
 
 /* Responsive Styling */ 
 @media screen and (max-width: 768px) {
