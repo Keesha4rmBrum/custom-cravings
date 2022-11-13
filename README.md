@@ -15,10 +15,10 @@ Custom Cravings uses an API called Edamam, which links to a bank of thousands of
 The application could be developed further by allowing users to select recipes based on further criteria that could cater to various dietary restrictions, such as vegetarianism, veganism or those related to restrictions due to intolerances, allergies or religious requirements.
 
 ## Contributors
-Cherry Deakin
-Ellesse Donaldson
-Vasco Miguens
-Keesha Murray
+Cherry Deakin, 
+Ellesse Donaldson, 
+Vasco Miguens, 
+Keesha Murray, 
 
 
 
