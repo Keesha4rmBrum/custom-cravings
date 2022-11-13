@@ -1,6 +1,6 @@
 ## custom-cravings
 
-#Intoduction
+#Introduction
 Custom Cravings is a web application which allows users to find a selection of recipes based on their particular food preferences.
 
 #The Aim of the Project
