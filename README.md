@@ -17,7 +17,7 @@ To use the application, a user goes to the URL and types their desired ingredien
 Custom Cravings uses an API called Edamam, which links to a bank of thousands of recipes. A second API is used which was custom built by our team, which limits the search options to 143 ingredients. The languages and libraries used in the application's development are HTML, CSS, Javascript, JQuery and Bootstrap.
 
 ## Further Development
-The application could be developed further by allowing users to select recipes based on further criteria such as a calorie threshold for those watching the their calorie intake. The API could also be expanded to include more than the 143 ingredients it currently holds.
+The application could be developed further by allowing users to select recipes based on further criteria such as a calorie threshold for users watching their calorie intake. The API could also be expanded to include more than the 143 ingredients it currently holds.
 
 ## URL
 https://cherry-aisha.github.io/custom-cravings/ 
