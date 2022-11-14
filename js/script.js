@@ -227,8 +227,10 @@ var renderResults = function (element) {
       <img class="result-img" id="food" src="${
         recipes[i].recipe.images.SMALL.url
       }"></img>
-      <div class="result-body" ${recipes[i]._links.self.href}>
-        <h2 class="result-header">${recipeLabel}</h2>
+      <div class="result-body"">
+        <h2 class="result-header" href="${
+          recipes[i]._links.self.href
+        }">${recipeLabel}</h2>
         <i class="fa fa-users">Serves: ${recipes[i].recipe.yield}</i>
         ${favouriteIcon}
         <span class="type-h"><b>Meal Type</b>: ${
@@ -286,7 +288,7 @@ results.addEventListener("click", function (e) {
   var recipeImage =
     e.target.parentElement.parentElement.children.food.currentSrc;
   //target recipeCard and get href
-  var recipeLink = e.target.parentElement.parentElement.getAttribute("href");
+  var recipeLink = e.target.parentElement.children[0].attributes.href.nodeValue;
   //check if the recipe already exists in the favouriteArray
   var recipeExists = favouriteArray.find((search) => search.name == recipeName);
   //if the icon has a empty heart
