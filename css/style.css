@@ -508,7 +508,7 @@ button:hover {
 
   .about-us {
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
   }
 
   #about-us-img {
@@ -516,6 +516,7 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     margin-right: 0px;
+    margin-bottom: 10px;
   }
 
   .result-card {
