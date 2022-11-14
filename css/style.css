@@ -92,7 +92,7 @@ a:hover {
 
 /* Hero Styling */
 .hero-image {
-  background-image: url("./assets/hero.png");
+  background-image: url("../assets/hero.png");
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -139,6 +139,11 @@ h3 {
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+}
+
+.about-us-header {
+  display: flex;
+  flex-direction: column;
 }
 
 .about-us-p {
@@ -251,6 +256,7 @@ input::content {
 
 button:hover {
   background-color: var(--burnt-orange-color);
+  cursor: pointer;
 }
 
 #alertUser {
@@ -473,12 +479,10 @@ button:hover {
 }
 
 .button-container {
-  margin-top: 50px;
-  text-align: center;
+  display: flex;
+  gap: 20px;
   height: 50px;
-}
-
-.next-button {
+  margin-bottom: 20px;
 }
 
 /* Responsive Styling */

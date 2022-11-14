@@ -18,6 +18,7 @@ var alertUser = document.getElementById("alertUser");
 var favouriteArray = JSON.parse(localStorage.getItem("favourite")) || [];
 var anch = document.getElementById("favourites-page");
 var resultSubContainer = document.createElement("div");
+var buttonsDiv = document.createElement("div");
 
 fetch("https://bootcamp-food-api.herokuapp.com/api/foods")
   .then((response) => response.json())
@@ -118,8 +119,6 @@ var formSubitHandler = function (event) {
 
 var searchRecipe = function (search) {
   var apiURL = `${RECIPE_BASE_API_URL}recipes/v2?type=public&q=${search}&app_id=${RECIPE_API_ID}&app_key=${RECIPE_API_KEY}`;
-  //increase key index
-  keyIndex++;
   //save api url in local storage witha index of 1
   localStorage.setItem(keyIndex, JSON.stringify(apiURL));
   //if mealtype input has been selected then concatenate mealtype value to api call
@@ -164,12 +163,14 @@ var loadPage = function (element) {
       if (response.ok) {
         response.json().then(function (data) {
           results.innerHTML = "";
+          resultSubContainer.innerHTML = "";
+          buttonsDiv.innerHTML = "";
           renderResults(data);
           //previous button will only be crated if key index is greater than 1
-          if (keyIndex > 1) {
-            //create previous button
-            prevButton = document.createElement("div");
-            prevButton.innerHTML = "prev";
+          if (keyIndex >= 1) {
+            var prevButton = document.createElement("button");
+            prevButton.classList.add("button");
+            prevButton.innerHTML = "Previous";
             prevButton.addEventListener("click", function () {
               //get previous url from local storage and save it in variable
               var prevLink = JSON.parse(localStorage.getItem(keyIndex - 1));
@@ -178,8 +179,10 @@ var loadPage = function (element) {
               //decrease key index if prev button is clicked
               keyIndex--;
             });
+
             //append previous button to results container
-            results.appendChild(prevButton);
+            buttonsDiv.insertBefore(prevButton, buttonsDiv.children[0]);
+            results.appendChild(buttonsDiv);
           }
         });
       }
@@ -252,19 +255,23 @@ var renderResults = function (element) {
   //API next page link
   var nextURL = element._links.next?.href;
   if (nextURL !== undefined) {
-    //create API next page button
-    nextButton = document.createElement("div");
+    buttonsDiv.innerHTML = "";
+    buttonsDiv.classList.add("button-container");
+    var nextButton = document.createElement("button");
+    nextButton.classList.add("button");
     nextButton.innerHTML = "Next";
     //cal API's next page
     nextButton.addEventListener("click", function () {
       loadPage(nextURL);
       //increase key index if next button is clicked
       keyIndex++;
+
       //save url in local storage with keyindex
       localStorage.setItem(keyIndex, JSON.stringify(nextURL));
     });
     //apend API's next page to results container
-    results.appendChild(nextButton);
+    buttonsDiv.appendChild(nextButton);
+    results.appendChild(buttonsDiv);
   }
   //scroll into results container
   results.scrollIntoView();
@@ -276,7 +283,7 @@ var deleteSearch = function () {
   ingredientsArray = [];
 };
 
-results.addEventListener("click", function (e) {
+resultSubContainer.addEventListener("click", function (e) {
   //coloured heart fontawesome icon
   var solidHert = "fa-solid fa-heart";
   //empty heart fontawesome icon
