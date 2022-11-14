@@ -1,27 +1,29 @@
 var favourite = JSON.parse(localStorage.getItem("favourite") || []);
 var favouriteContainer = document.getElementById("favourites");
-var results = document.getElementById("results");
-
+var results = document.getElementById("recipe-result");
 var renderFavourite = function () {
   //clear container for new recipe
   favouriteContainer.innerHTML = "";
   for (i = 0; i < favourite.length; i++) {
     //create card
     var card = document.createElement("div");
+    card.classList.add("favourites-card");
     var cardBody = document.createElement("div");
+    cardBody.classList.add("favourites-card-body");
     cardBody.style.cssText = "position:relative;";
     cardBody.addEventListener("click", loadRecipe);
-    //insert recipe link into card element
+    //insert recipe link into element
     cardBody.setAttribute("href", favourite[i].link);
     //populate card
     cardBody.innerHTML = `
         <img id="recipe-image" src="${favourite[i].image}"/>
-        <p style="position:absolute; top: 10px; left: 10px; z-index: 2;">${favourite[i].name}</p>
+        <span>${favourite[i].name}</span>
     `;
     card.appendChild(cardBody);
     favouriteContainer.appendChild(card);
     var icon = document.createElement("div");
-    icon.innerHTML = `<i class="fa-solid fa-trash" style="width: 100%; height:30px; background-color:red; text-align:center;"></i>`;
+    icon.classList.add("favourites-icon");
+    icon.innerHTML = `<i class="fa-solid fa-trash"></i>`;
     icon.addEventListener("click", removeRecipe);
     card.appendChild(icon);
   }
@@ -29,19 +31,21 @@ var renderFavourite = function () {
 
 function removeRecipe(e) {
   //get recipe name
-  var recipeName = e.target.parentElement.parentElement.children[1].innerHTML;
+  var recipeName =
+    e.target.parentElement.parentElement.children[0].children[1].innerHTML;
   //find the recipename in the array
   var recipeExists = favourite.find((search) => search.name == recipeName);
   //remove the item from the array
   favourite.splice(favourite.indexOf(recipeExists), 1);
   //replace the array in local storage without the removed element
   localStorage.setItem("favourite", JSON.stringify(favourite));
-  //rend the favourites again without the removed element
+  //render the favourites again without the removed element
   renderFavourite();
 }
 
 var loadRecipe = function (e) {
   results.innerHTML = "";
+  results.style.display = "block";
   var recipeLink = e.target.parentElement.getAttribute("href");
   var requestOptions = {
     method: "GET",
@@ -50,7 +54,6 @@ var loadRecipe = function (e) {
   fetch(recipeLink, requestOptions).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        var container = document.createElement("div");
         //initiate array
         var recipeArray = [];
         recipeArray = data.recipe.ingredientLines;
@@ -59,29 +62,43 @@ var loadRecipe = function (e) {
           recipeList += "<li>" + element + "</li>";
         });
         recipeList += "</ul>";
-        container.innerHTML = `
-        <div class="recipeCard">
-          <div class="header">
-            <img id="food" src="${
-              data.recipe.images.SMALL.url
-            }" style="width: 300px; height: 300px;"></img>
-          </div>
-          <div class="text">
-            <h2 class="food">${data.recipe.label}</h2>
+        results.innerHTML = `  
+        <div class="recipe-result-card" href="${data._links.self.href}">
+         <span onclick="closeModal()" class="close">&times;</span>
+          <img class="result-img" id="food" src="${
+            data.recipe.images.SMALL.url
+          }"></img>
+          <div class="result-body">
+            <h2 class="result-header">${data.recipe.label}</h2>
             <i class="fa fa-users">Serves: ${data.recipe.yield}</i>
-            <p>Meal Type: ${data.recipe.mealType[0]}</p> 
-            <p>Calories per serving: ${Math.round(
+            <span class="type-h"><b>Meal Type</b>: ${
+              data.recipe.mealType[0]
+            }</span> 
+            <span class="type-h"><b>Calories per serving:</b> ${Math.round(
               data.recipe.calories / data.recipe.yield
-            )}Kcal</p> 
-            <p>Cuisine Type: ${data.recipe.cuisineType[0]}</p>
+            )}Kcal</span> 
+            <span class="type-h"><b>Cuisine Type:</b> ${
+              data.recipe.cuisineType[0]
+            }</span>
+            <span class="type-h"><b>Ingredients:</b></span>
             ${recipeList}
           </div>
         </div>
     `;
-        results.appendChild(container);
       });
     }
   });
+};
+
+window.onclick = function (event) {
+  if (event.target == results) {
+    console.log(event.target);
+    results.style.display = "none";
+  }
+};
+
+var closeModal = function (e) {
+  results.style.display = "none";
 };
 
 renderFavourite();

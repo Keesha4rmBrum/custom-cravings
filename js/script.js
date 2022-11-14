@@ -17,6 +17,7 @@ var nextButton;
 var alertUser = document.getElementById("alertUser");
 var favouriteArray = JSON.parse(localStorage.getItem("favourite")) || [];
 var anch = document.getElementById("favourites-page");
+var resultSubContainer = document.createElement("div");
 
 fetch("https://bootcamp-food-api.herokuapp.com/api/foods")
   .then((response) => response.json())
@@ -191,9 +192,11 @@ var renderResults = function (element) {
   var recipeArray;
   //
   var recipes = element.hits;
+  resultSubContainer.classList.add("results-container");
   //iterate through each object returned by the API
   for (var i = 0; i < recipes.length; i++) {
     var container = document.createElement("div");
+    container.classList.add("result-card");
     //get recipe label to compare with favourites
     var recipeLabel = recipes[i].recipe.label;
     //find if any recipe rendered is in the favourites in the local storage
@@ -221,35 +224,29 @@ var renderResults = function (element) {
     recipeList += "</ul>";
     //populate the container
     container.innerHTML = `
-      <div class="result-cards">
-          <div class="result-card">
-            <div href="${recipes[i]._links.self.href}">
-                <img class="result-img" id="food" src="${
-                  recipes[i].recipe.images.SMALL.url
-                }"></img>
-                  <div class="text">
-                    <h2 class="result-header">${recipeLabel}</h2>
-                      <i class="fa fa-users">Serves: ${
-                        recipes[i].recipe.yield
-                      }</i>
-                      ${favouriteIcon}
-                      <p class="type-h">Meal Type: ${
-                        recipes[i].recipe.mealType[0]
-                      }</p> 
-                      <p class="type-h">Calories per serving: ${Math.round(
-                        recipes[i].recipe.calories / recipes[i].recipe.yield
-                      )}Kcal</p> 
-                      <p class="type-h">Cuisine Type: ${
-                        recipes[i].recipe.cuisineType[0]
-                      }</p>
-                     ${recipeList}
-                  </div>
-            </div>
-          </div>
+      <img class="result-img" id="food" src="${
+        recipes[i].recipe.images.SMALL.url
+      }"></img>
+      <div class="result-body" ${recipes[i]._links.self.href}>
+        <h2 class="result-header">${recipeLabel}</h2>
+        <i class="fa fa-users">Serves: ${recipes[i].recipe.yield}</i>
+        ${favouriteIcon}
+        <span class="type-h"><b>Meal Type</b>: ${
+          recipes[i].recipe.mealType[0]
+        }</span> 
+        <span class="type-h"><b>Calories per serving:</b> ${Math.round(
+          recipes[i].recipe.calories / recipes[i].recipe.yield
+        )}Kcal</span> 
+        <span class="type-h"><b>Cuisine Type:</b> ${
+          recipes[i].recipe.cuisineType[0]
+        }</span>
+        <span class="type-h"><b>Ingredients:</b></span>
+        ${recipeList}
       </div>
     `;
-    results.appendChild(container);
+    resultSubContainer.appendChild(container);
   }
+  results.appendChild(resultSubContainer);
   //API next page link
   var nextURL = element._links.next?.href;
   if (nextURL !== undefined) {
