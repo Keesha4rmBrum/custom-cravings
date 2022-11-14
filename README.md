@@ -10,19 +10,15 @@ This project was created primarily to answer the problem of food wastage. It doe
 To use the application, a user goes to the URL and types their desired ingredient into the ‘search’ box. They will be presented with a list of recipes based on their food of choice. Their ‘favourite’ recipes can be saved on a separate page. 
 
 ## Technologies Used
-Custom Cravings uses an API called Edamam, which links to a bank of thousands of recipes. A second API is used which was custom built by our team, which limits the search options to 143 ingredients. The languages and libraries used are HTML, CSS, Javascript, JQuery and Bootstrap have also been used in the development of this application.
-
+Custom Cravings uses an API called Edamam, which links to a bank of thousands of recipes. A second API is used which was custom built by our team, which limits the search options to 143 ingredients. The languages and libraries used in the application's development are HTML, CSS, Javascript, JQuery and Bootstrap.
 ## Room for Improvement
 The application could be developed further by allowing users to select recipes based on further criteria that could cater to various dietary restrictions, such as vegetarianism, veganism or those related to restrictions due to intolerances, allergies or religious requirements.
 
 ## Contributors
-Cherry Deakin,
-
-Ellesse Donaldson,
-
-Vasco Miguens,
-
-Keesha Murray
+Cherry Deakin, 
+Ellesse Donaldson, 
+Vasco Miguens, 
+Keesha Murray, 
 
 
 
